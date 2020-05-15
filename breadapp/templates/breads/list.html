@@ -4,7 +4,7 @@
 <a href="{%url 'breadapp:bread_form' %}">Add Bread</a>
     <ul>
         {% for bread in breads %}
-        <li>{{bread.name}}</li>
+        <li><a href="{%url 'breadapp:bread_details' bread.id %}">{{bread.name}}</a></li>
         {% endfor%}
     </ul>
 </div>

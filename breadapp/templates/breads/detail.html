@@ -1,0 +1,15 @@
+{% extends 'shared/base.html' %}
+{%block content%}
+<div>
+{{bread.name}}
+{{bread.region}}
+    <div>
+        <ul>
+        {%for ingredient in bread.list_ingredients%}
+        <li>{{ingredient.name}} {{ingredient.amount}}</li>
+
+        {%endfor%}
+        </ul>
+    </div>
+</div>
+{%endblock%}
