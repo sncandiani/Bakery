@@ -1,0 +1,22 @@
+{% extends 'shared/base.html' %}
+{% block content %}
+
+<div>
+
+    <h1>Add Bread</h1>
+    <form action="{% url 'breadapp:bread_list' %}" method="post">
+        {% csrf_token %}
+     
+          <label for="name">Bread Name: </label>
+          <input id="name" type="text" name="name" value="{{bread.name}}">
+     
+     
+          <label for="region">Region: </label>
+          <input id="region" type="text" name="region" value="{{bread.region}}">
+     
+        <input  type="submit" value="Create" />
+     
+    </form>
+
+</div>
+{%endblock%}
