@@ -28,8 +28,23 @@ def bread_list(request):
 
                 all_breads.append(bread)
 
-    template = "breads/list.html"
-    context = {
-        'breads': all_breads
-    }
-    return render(request, template, context)
+        template = "breads/list.html"
+        context = {
+            'breads': all_breads
+        }
+        return render(request, template, context)
+    elif request.method == 'POST': 
+        form_data = request.POST
+        with sqlite3.connect(Connection.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            INSERT INTO breadapp_bread 
+            (
+                name, region
+            ) 
+            VALUES (?, ?)
+            """, (form_data["name"], form_data["region"]))
+
+            return redirect(reverse('breadapp:bread_list'))
